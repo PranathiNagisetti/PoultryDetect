@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Poultry Detect</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='assets/style.css') }}">
+</head>
+<body>
+  <nav>
+    <div class="logo">📷 Poultry Detect</div>
+    <ul class="nav-links">
+      <li><a href="{{ url_for('index') }}">HOME</a></li>
+      <li><a href="{{ url_for('predict_page') }}">PREDICTION PAGE</a></li>
+    </ul>
+    <div class="social-icons">
+      <a href="#"><i class="fa fa-times"></i></a>
+      <a href="#"><i class="fa fa-facebook"></i></a>
+      <a href="#"><i class="fa fa-instagram"></i></a>
+      <a href="#"><i class="fa fa-linkedin"></i></a>
+    </div>
+  </nav>
+
+  <main>
+    <h1>Prediction</h1>
+    <h2>Image Classification</h2>
+
+    <!-- Fix: input name must match Flask route -->
+    <form action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+      <label for="imageUpload">Upload Your Image:</label>
+      <input type="file" id="imageUpload" name="pc_image" required>
+      <button type="submit">Predict</button>
+    </form>
+  </main>
+</body>
+</html>

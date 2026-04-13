@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PoultryDetect - Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+</head>
+<body>
+
+<header>
+    <div class="logo">PoultryDetect</div>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('index') }}" class="active">HOME</a></li>
+            <li><a href="{{ url_for('about') }}">ABOUT</a></li>
+            <li><a href="{{ url_for('contact') }}">CONTACT</a></li>
+
+        </ul>
+    </nav>
+    <div class="social-icons">
+        <i class="fab fa-x-twitter"></i>
+        <i class="fab fa-facebook"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-linkedin"></i>
+    </div>
+</header>
+
+<section class="hero">
+    <h1>Welcome to Poultry Health Hub,</h1>
+    <p>your comprehensive resource for poultry disease management and prevention.</p>
+    <a href="{{ url_for('predict_page') }}" class="btn">GET STARTED</a>
+
+</section>
+
+<section class="gallery">
+    <img src="{{ url_for('static', filename='uploads/coccidiosis.png') }}" alt="Uploaded Image">
+    <img src="{{ url_for('static', filename='uploads/sick-chicken.jpg') }}" alt="Sick Chicken">
+    <img src="{{ url_for('static', filename='uploads/healthy-chicken.jpg') }}" alt="Healthy Chicken">
+    <img src="{{ url_for('static', filename='uploads/chicken-farm.png') }}" alt="Chicken Farm">
+
+</section>
+
+</body>
+</html>

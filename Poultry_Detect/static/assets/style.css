@@ -1,0 +1,85 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: 'Georgia', serif;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  padding: 15px 30px;
+  border-bottom: 1px solid #333;
+}
+
+.logo {
+  font-size: 24px;
+  color: white;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.social-icons a {
+  color: white;
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+main {
+  padding: 80px 20px;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-bottom: 30px;
+}
+
+form {
+  margin: 20px auto;
+  display: inline-block;
+  text-align: left;
+}
+
+label {
+  margin-right: 10px;
+}
+
+input[type="file"] {
+  padding: 8px;
+  width: 500px;
+  margin-right: 20px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  font-size: 18px;
+  padding: 10px 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.result-text {
+  margin-top: 40px;
+  font-size: 28px;
+}

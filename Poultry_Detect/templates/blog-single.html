@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>About - PoultryDetect</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/styles_port.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo">PoultryDetect</div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">HOME</a></li>
+                <li><a href="{{ url_for('about') }}" class="active">ABOUT</a></li>
+                <li><a href="{{ url_for('contact') }}">CONTACT</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="center-content">
+            <h1>About PoultryDetect</h1><br>
+            <p>
+                PoultryDetect is a smart AI-powered platform for detecting poultry diseases using image classification.
+                It helps farmers and poultry professionals quickly identify health conditions and take preventive actions.
+            </p>
+
+            <p>
+                <strong>PoultryDetect</strong> is an intelligent web-based application designed to help poultry farmers and veterinarians detect common poultry diseases through image classification using deep learning.
+                The platform enables fast and accessible diagnosis by allowing users to upload chicken images and get instant feedback about potential infections.
+            
+            </p>
+
+            <br><br>
+            <h2>🎯 Our Mission</h2><br>
+            <p>
+                
+                To empower the poultry industry—especially in rural areas—with AI-driven tools that minimize losses, improve animal welfare, and support early disease detection and prevention.
+        
+            </p>
+            <br><br>
+
+            <h2>🔬 Technologies Used</h2>
+            <br>
+            <ul>
+
+                <li><strong>Flask:</strong> Python-based micro web framework used for backend logic.</li>
+                <li><strong>TensorFlow + Keras:</strong> Deep learning libraries used for training the CNN model.</li>
+                <li><strong>Transfer Learning:</strong> Used <code>ResNet50</code> to classify diseases from poultry images.</li>
+                <li><strong>HTML/CSS/JS:</strong> For creating responsive and user-friendly frontend.</li>
+            </ul>
+            <br><br>
+
+            <h2>📷 Model Details</h2><br>
+            <p>The model is trained to classify poultry images into 4 categories:</p>
+            <ul>
+                <li><strong>Healthy</strong></li>
+                <li><strong>Coccidiosis</strong></li>
+                <li><strong>Salmonella</strong></li>
+                <li><strong>New Castle Disease</strong></li>
+            </ul>
+            <br><br>
+
+            <h2>👩‍💻 Developed By</h2><br>
+            <ul>
+                <li><strong>Student Name:</strong> NAGISETTI PRANATHI</li>
+                <li><strong>College:</strong> Shri Vishnu Engineering College for Women</li>
+                <li><strong>Branch:</strong> Computer Science and Engineering</li>
+                <li><strong>Year:</strong> 3rd Year (2025)</li>
+            </ul>
+            <br><br>
+
+            <h2>📬 Contact Us</h2><br>
+            <p>
+                Got questions or feedback? Reach out through the <a href="{{ url_for('contact') }}">Contact</a> page.
+            </p>
+        </div>
+    </main>
+</body>
+</html>
