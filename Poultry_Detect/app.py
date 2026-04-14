@@ -24,9 +24,13 @@ model = tf.keras.models.load_model(MODEL_PATH)
 labels = ['Coccidiosis', 'Healthy', 'New Castle Disease', 'Salmonella']
 
 # Function to preprocess and predict (FROM MEMORY)
+from PIL import Image
+
 def get_model_prediction(file):
-    img = load_img(BytesIO(file.read()), target_size=(224, 224))
-    x = img_to_array(img) / 255.0
+    img = Image.open(file.stream).convert("RGB")  # safer method
+    img = img.resize((224, 224))
+
+    x = np.array(img) / 255.0
     x = np.expand_dims(x, axis=0)
 
     predictions = model.predict(x, verbose=0)
@@ -34,7 +38,6 @@ def get_model_prediction(file):
     confidence = np.max(predictions)
 
     return labels[predicted_class], float(confidence)
-
 # Routes
 @app.route('/')
 def index():
