@@ -4,14 +4,10 @@ import tensorflow as tf
 from flask import Flask, render_template, request
 from keras.preprocessing.image import load_img, img_to_array
 import gdown
-from werkzeug.utils import secure_filename
+from io import BytesIO
 
 # Initialize Flask app
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
-
-# Ensure upload folder exists
-os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # Model path
 MODEL_PATH = "healthy_vs_rotten.h5"
@@ -24,14 +20,14 @@ if not os.path.exists(MODEL_PATH):
 # Load model
 model = tf.keras.models.load_model(MODEL_PATH)
 
-# Class labels (same order as training)
+# Class labels
 labels = ['Coccidiosis', 'Healthy', 'New Castle Disease', 'Salmonella']
 
-# Function to preprocess and predict
-def get_model_prediction(image_path):
-    img = load_img(image_path, target_size=(224, 224))
-    x = img_to_array(img) / 255.0   # Normalize
-    x = np.expand_dims(x, axis=0)   # Add batch dimension
+# Function to preprocess and predict (FROM MEMORY)
+def get_model_prediction(file):
+    img = load_img(BytesIO(file.read()), target_size=(224, 224))
+    x = img_to_array(img) / 255.0
+    x = np.expand_dims(x, axis=0)
 
     predictions = model.predict(x, verbose=0)
     predicted_class = np.argmax(predictions)
@@ -39,48 +35,39 @@ def get_model_prediction(image_path):
 
     return labels[predicted_class], float(confidence)
 
-# Home Page
+# Routes
 @app.route('/')
 def index():
     return render_template("index.html")
 
-# About Page
 @app.route('/about')
 def about():
     return render_template("blog-single.html")
 
-# Contact Page
 @app.route('/contact')
 def contact():
     return render_template("blog.html")
 
-# Upload Page
 @app.route('/predict-page')
 def predict_page():
     return render_template("portfolio-details.html")
 
-# Prediction Route
+# Prediction Route (UPDATED)
 @app.route('/predict', methods=['POST'])
 def predict():
-    if request.method == 'POST':
-        file = request.files['pc_image']
+    file = request.files['pc_image']
 
-        if file.filename == '':
-            return "No file uploaded"
+    if file.filename == '':
+        return "No file uploaded"
 
-        filename = secure_filename(file.filename)
-        filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-        file.save(filepath)
+    prediction, confidence = get_model_prediction(file)
 
-        prediction, confidence = get_model_prediction(filepath)
+    return render_template(
+        "contact.html",
+        predict=prediction,
+        confidence=round(confidence * 100, 2)
+    )
 
-        return render_template(
-            "contact.html",
-            predict=prediction,
-            confidence=round(confidence * 100, 2),
-            image_name=filename
-        )
-
-# Run the app
+# Run app
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
