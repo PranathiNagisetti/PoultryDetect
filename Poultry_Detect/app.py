@@ -27,7 +27,7 @@ labels = ['Coccidiosis', 'Healthy', 'New Castle Disease', 'Salmonella']
 from PIL import Image
 
 def get_model_prediction(file):
-    img = Image.open(file.stream).convert("RGB")  # safer method
+    img = Image.open(file.stream).convert("RGB")
     img = img.resize((224, 224))
 
     x = np.array(img) / 255.0
